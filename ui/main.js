@@ -32,7 +32,7 @@ button.onclick = function() {
 		}
 	}
 
-	request.open('GET','http://localhost:8080/counter', true);
+	request.open('GET','/counter', true);
 	request.send(null);
 	/*counter = counter + 1;
 	var span = document.getElementById('count');
@@ -60,7 +60,7 @@ submit.onclick = function() {
 	}
 	var nameInput = document.getElementById('name');
 	var name = nameInput.value;
-	request.open('GET','http://localhost:8080/submit-name?name=' + name, true);
+	request.open('GET','/submit-name?name=' + name, true);
 	request.send(null);
 	/*var names = ['name1', 'name2', 'name3', 'name4'];
 	var list = '';
