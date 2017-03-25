@@ -7,11 +7,16 @@ var app = express();
 app.use(morgan('combined'));
 
 var config = {
-    user : 'phoenixnitin',
+    user : 'postgres',
+    database : 'postgres',
+    host : 'localhost',
+    port : '5432',
+    password : 'post1'
+    /*user : 'phoenixnitin',
     database : 'phoenixnitin',
     host : 'db.imad.hasura-app.io',
     port : '5432',
-    password : process.env.DB_PASSWORD
+    password : process.env.DB_PASSWORD*/
 }
 
 var articles = {
@@ -119,7 +124,7 @@ app.get('/submit-name', function(req, res) {  // URL: /submit-name?name=xxxxxx
 app.get('/articles/:articleName', function (req, res) {
     //var articleName = req.params.articleName;
     
-    pool.query("SELECT * FROM article WHERE title = '"+ req.params.articleName +"'", function(err, result){
+    pool.query("SELECT * FROM article WHERE title = $1",[req.params.articleName], function(err, result){
         if(err){
             res.status(500).send(err.toString());
         } else {
